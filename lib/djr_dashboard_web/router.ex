@@ -21,9 +21,15 @@ defmodule DjrDashboardWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", DjrDashboardWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", DjrDashboardWeb do
+    pipe_through :api
+    resources "/manga", MangaController, only: [:new, :create, :delete]
+    get "/mangas", MangaController, :index
+    resources "/issue", IssueController, only: [:new, :create, :delete]
+    get "/issues", IssueController, :index
+    resources "/review", ReviewController, only: [:new, :create, :delete]
+    get "/reviews", ReviewController, :index
+  end
 
   # Enable LiveDashboard in development
   if Application.compile_env(:djr_dashboard, :dev_routes) do
