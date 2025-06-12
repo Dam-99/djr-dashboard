@@ -5,6 +5,7 @@ defmodule DjrDashboard.Issue do
   schema "issues" do
     field :number, :string
     field :year, :integer
+    many_to_many :issues, DjrDashboard.Manga, join_through: DjrDashboard.Chapter
 
     timestamps(type: :utc_datetime)
   end

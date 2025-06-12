@@ -4,8 +4,8 @@ defmodule DjrDashboard.Manga do
 
   schema "mangas" do
     field :title, :string
-    field :uuid, Ecto.UUID
-    many_to_many :issues, DjrDashboard.Issue, join_through: "table_of_contets"
+    field :uuid, Ecto.UUID, primary_key: true # does it make sense for it to be a uuid
+    many_to_many :issues, DjrDashboard.Issue, join_through: DjrDashboard.Chapter
 
     timestamps(type: :utc_datetime)
   end
