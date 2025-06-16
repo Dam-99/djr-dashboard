@@ -1,9 +1,11 @@
 defmodule DjrDashboardWeb.MangaController do
   use DjrDashboardWeb, :controller
 
+  alias DjrDashboard.MangaContext
+
   def index(conn, _params) do
     # context do things
-    manga_list = MangaContext.list_manga()
+    manga_list = MangaContext.list_mangas()
     # then render function from manga_html/json
     # conn, template, assign(keyw list)
     render(conn, :index, mangas: manga_list)
@@ -22,6 +24,7 @@ defmodule DjrDashboardWeb.MangaController do
   end
 
   def delete(conn, %{"uuid" => uuid}) do
+    {:ok, uuid} = MangaContext.delete_manga(uuid)
     render(conn, :delete, id: uuid)
   end
 

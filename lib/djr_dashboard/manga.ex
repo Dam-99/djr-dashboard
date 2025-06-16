@@ -4,7 +4,7 @@ defmodule DjrDashboard.Manga do
 
   schema "mangas" do
     field :title, :string
-    field :uuid, Ecto.UUID, primary_key: true # does it make sense for it to be a uuid
+    field :uuid, Ecto.UUID, primary_key: true, autogenerate: true # does it make sense for it to be a uuid
     many_to_many :issues, DjrDashboard.Issue, join_through: DjrDashboard.Chapter
 
     timestamps(type: :utc_datetime)
@@ -14,6 +14,6 @@ defmodule DjrDashboard.Manga do
   def changeset(manga, attrs) do
     manga
     |> cast(attrs, [:uuid, :title])
-    |> validate_required([:uuid, :title])
+    |> validate_required([:title])
   end
 end
