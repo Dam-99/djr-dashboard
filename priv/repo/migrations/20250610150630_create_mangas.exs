@@ -3,7 +3,7 @@ defmodule DjrDashboard.Repo.Migrations.CreateMangas do
 
   def change do
     create table(:mangas, primary_key: false) do
-      add :uuid, :uuid, primary_key: true
+      add :id, :uuid, primary_key: true
       add :title, :string
 
       timestamps(type: :utc_datetime)

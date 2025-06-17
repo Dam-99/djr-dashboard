@@ -4,9 +4,9 @@ defmodule DjrDashboard.Chapter do
 
   schema "chapters" do
     field :chap_number, :integer
-    field :manga_id, :id
-    field :issue_number, :id
-    field :issue_year, :id
+    field :manga_id, Ecto.UUID
+    field :issue_number, :string
+    field :issue_year, :integer
 
     timestamps(type: :utc_datetime)
   end
