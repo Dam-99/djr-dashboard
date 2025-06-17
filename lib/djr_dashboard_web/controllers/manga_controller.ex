@@ -19,12 +19,12 @@ defmodule DjrDashboardWeb.MangaController do
 
   def create(conn, %{"title" => title}) do
     # maybe don't need the render here?
-    {:ok, uuid} = MangaContext.create_manga(title)
+    {:ok, %DjrDashboard.Manga{id: uuid}} = MangaContext.create_manga(title)
     render(conn, :create, id: uuid, title: title)
   end
 
-  def delete(conn, %{"uuid" => uuid}) do
-    {:ok, uuid} = MangaContext.delete_manga(uuid)
+  def delete(conn, %{"id" => uuid}) do
+    {:ok, %DjrDashboard.Manga{id: uuid}} = MangaContext.delete_manga(uuid)
     render(conn, :delete, id: uuid)
   end
 

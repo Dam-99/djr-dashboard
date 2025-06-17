@@ -13,10 +13,11 @@ defmodule DjrDashboard.MangaContext do
   """
   def list_mangas() do
     Repo.all(Manga)
+    # Repo.all(from(m in Manga, select: [m.uuid, m.title]))
   end
 
   def get_manga(uuid) do
-    Repo.get(%Manga{}, uuid)
+    Repo.get(Manga, uuid)
   end
 
   def create_manga(title) do
@@ -26,7 +27,7 @@ defmodule DjrDashboard.MangaContext do
   end
 
   def delete_manga(uuid) do
-    manga = %Manga{} = get_manga(uuid)
+    manga = get_manga(uuid)
     Repo.delete(manga)
   end
 
