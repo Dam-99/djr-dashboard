@@ -3,10 +3,14 @@ defmodule DjrDashboard.Repo.Migrations.CreateIssues do
 
   def change do
     create table(:issues, primary_key: false) do
-      add :number, :string, primary_key: true
-      add :year, :integer, primary_key: true
+      add :id, :uuid, primary_key: true
+      add :number, :string
+      add :year, :integer
 
       timestamps(type: :utc_datetime)
     end
+
+    create index(:issues, :year)
+    create unique_index(:issues, [:year, :number])
   end
 end
