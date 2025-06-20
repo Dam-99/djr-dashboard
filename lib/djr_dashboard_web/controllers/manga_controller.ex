@@ -33,8 +33,10 @@ defmodule DjrDashboardWeb.MangaController do
   # so i wouldn't really need this action. especially because it would imply that
   # titles should also be unique which... i mean yeah, but i don't want to enforce it
   # ... or do i? could be a good chance to use the changesets, idk
+  # You're right, we can avoid this action and just keep the delete action that
+  # accepts the UUID directly.
   def delete(conn, %{"title" => title}) do
-    uuid = MangaContext.uuid_from_title(title)
+    uuid = MangaContext.uuid_from_title(title) # Missing call to delete
     render(conn, :delete, id: uuid)
   end
 end
