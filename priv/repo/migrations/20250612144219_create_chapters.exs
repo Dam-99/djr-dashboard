@@ -6,6 +6,7 @@ defmodule DjrDashboard.Repo.Migrations.CreateChapters do
       add :chap_number, :integer
       add :manga_id, references(:mangas, column: :id, type: :uuid, on_delete: :nothing)
       add :issue_id, references(:issues, column: :id, type: :uuid, on_delete: :nothing)
+      # That's right, let's keep the tables normalized and avoid the following lines.
       # add :issue_number, references(:issues, column: :number, type: :string, on_delete: :nothing)
       # add :issue_year, references(:issues, column: :year, type: :integer, on_delete: :nothing)
 

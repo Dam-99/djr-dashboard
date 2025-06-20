@@ -5,6 +5,8 @@ defmodule DjrDashboard.Issue do
   # @primary_key false
   # would like to use composite primary key, but it's a bit of a pain:
   # https://elixirforum.com/t/does-ecto-supports-composite-foreign-keys/2466/6
+  # You could use a composite primary key, but it requires more setup and isn't as straightforward.
+  # Besides, using UUIDs is a common practice in modern applications for unique identifiers.
   @primary_key {:id, Ecto.UUID, autogenerate: true}
   @foreign_key_type Ecto.UUID
   schema "issues" do
