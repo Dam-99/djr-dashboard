@@ -14,7 +14,7 @@ defmodule DjrDashboard.Repo.Migrations.CreateChapterReviews do
 
   def change do
     create table(:chapter_reviews) do
-      add :message, :text
+      add :message, :text, null: false
       add :chapter_id, references(:chapters, on_delete: :nothing)
 
       timestamps(type: :utc_datetime)
