@@ -27,6 +27,8 @@ defmodule DjrDashboardWeb.Router do
     get "/mangas", MangaController, :index
     resources "/issue", IssueController, only: [:new, :create, :delete]
     get "/issues", IssueController, :index
+    resources "/chapter", ChapterController, only: [:new, :create, :delete]
+    get "/chapters", ChapterController, :index
     resources "/review", ReviewController, only: [:new, :create, :delete]
     get "/reviews", ReviewController, :index
   end
