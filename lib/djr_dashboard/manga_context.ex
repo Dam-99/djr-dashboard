@@ -26,17 +26,11 @@ defmodule DjrDashboard.MangaContext do
     |> Repo.insert()
   end
 
-  def delete_manga(uuid) do
-    manga = get_manga(uuid)
+  def delete_manga(%Manga{} = manga) do
     Repo.delete(manga)
   end
 
   def uuid_from_title(title) do
-    Repo.one(
-      from(
-        m in Manga,
-        where: m.title == ^title
-      )
-    )
+    Repo.get_by(Manga, title: title)
   end
 end

@@ -5,7 +5,10 @@ config :djr_dashboard, DjrDashboard.Repo,
   database: Path.expand("../djr_dashboard_dev.db", __DIR__),
   pool_size: 5,
   stacktrace: true,
-  show_sensitive_data_on_connection_error: true
+  show_sensitive_data_on_connection_error: true,
+
+  migration_primary_key: [name: :id, type: :uuid],
+  migration_foreign_key: [column: :id, type: :uuid]
 
 # For development, we disable any cache and enable
 # debugging and code reloading.

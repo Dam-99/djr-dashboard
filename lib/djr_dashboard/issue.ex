@@ -2,9 +2,6 @@ defmodule DjrDashboard.Issue do
   use Ecto.Schema
   import Ecto.Changeset
 
-  # @primary_key false
-  # would like to use composite primary key, but it's a bit of a pain:
-  # https://elixirforum.com/t/does-ecto-supports-composite-foreign-keys/2466/6
   @primary_key {:id, Ecto.UUID, autogenerate: true}
   @foreign_key_type Ecto.UUID
   schema "issues" do

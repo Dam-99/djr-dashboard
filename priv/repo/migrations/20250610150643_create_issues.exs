@@ -2,10 +2,9 @@ defmodule DjrDashboard.Repo.Migrations.CreateIssues do
   use Ecto.Migration
 
   def change do
-    create table(:issues, primary_key: false) do
-      add :id, :uuid, primary_key: true
-      add :number, :string
-      add :year, :integer
+    create table(:issues) do
+      add :number, :string, null: false
+      add :year, :integer, null: false
 
       timestamps(type: :utc_datetime)
     end
