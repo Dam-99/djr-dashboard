@@ -3,9 +3,11 @@ defmodule DjrDashboard.ChapterReview do
   import Ecto.Changeset
   alias DjrDashboard.Chapter
 
+  @primary_key {:id, Ecto.UUID, autogenerate: true}
+  @foreign_key_type Ecto.UUID
   schema "chapter_reviews" do
     field :message, :string
-    belongs_to :chapters, Chapter
+    belongs_to :chapter, Chapter
 
     timestamps(type: :utc_datetime)
   end
