@@ -29,8 +29,8 @@ defmodule DjrDashboardWeb.Router do
     get "/issues", IssueController, :index
     resources "/chapter", ChapterController, only: [:new, :create, :delete]
     get "/chapters", ChapterController, :index
-    resources "/review", ReviewController, only: [:new, :create, :delete]
-    get "/reviews", ReviewController, :index
+    resources "/review", ChapterReviewController, only: [:new, :create, :delete]
+    get "/reviews", ChapterReviewController, :index
   end
 
   # Enable LiveDashboard in development
