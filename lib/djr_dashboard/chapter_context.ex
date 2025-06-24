@@ -17,7 +17,12 @@ defmodule DjrDashboard.ChapterContext do
   end
 
   def list_manga_chapters(manga_id) do
-    case Repo.get_by(Chapter, manga_id: manga_id) do
+    query = from(
+      c in Chapter,
+      where: c.manga_id == ^manga_id,
+      select: c.chap_number
+    )
+    case Repo.all(query) do # Repo.all_by not available in Ecto v3.12.1
       nil -> []
       something -> something
     end

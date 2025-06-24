@@ -7,8 +7,8 @@ config :djr_dashboard, DjrDashboard.Repo,
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
 
-  migration_primary_key: [name: :id, type: :uuid],
-  migration_foreign_key: [column: :id, type: :uuid]
+  migration_primary_key: [name: :id, type: :binary_id],
+  migration_foreign_key: [column: :id, type: :binary_id]
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
