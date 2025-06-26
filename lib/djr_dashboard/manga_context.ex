@@ -34,10 +34,16 @@ defmodule DjrDashboard.MangaContext do
   def uuid_from_title(title) do
     Repo.get_by(Manga, title: title)
   end
-  
+
+  def get_or_create_manga(title) do
+    case uuid_from_title(title) do
+      %Manga{} = manga -> manga
+      nil -> {:ok, %Manga{}} = create_manga(title)
+    end
+  end
+
   def get_latest_chapter(id) do
     ChapterContext.list_manga_chapters(id)
-      |> IO.inspect()
       |> Enum.sort()
       |> List.first(0)
   end

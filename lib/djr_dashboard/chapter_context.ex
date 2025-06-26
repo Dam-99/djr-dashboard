@@ -28,6 +28,10 @@ defmodule DjrDashboard.ChapterContext do
     end
   end
 
+  def get_chapter(manga_id, issue_id) do
+    Repo.get_by(Chapter, manga_id: manga_id, issue_id: issue_id)
+  end
+
   def get_chapter(id) do
     Repo.get(Chapter, id)
   end

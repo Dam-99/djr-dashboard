@@ -28,7 +28,6 @@ defmodule DjrDashboardWeb.IssueController do
 
   def delete(conn, %{"id" => id}) do
     {:ok, %DjrDashboard.Issue{} = issue} = IssueContext.delete_issue(id)
-    IO.inspect(issue)
     render(conn, :delete, issue: issue)
   end
 end

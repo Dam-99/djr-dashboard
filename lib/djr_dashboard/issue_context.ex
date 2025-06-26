@@ -17,9 +17,7 @@ defmodule DjrDashboard.IssueContext do
   end
 
   def get_issue({year, number}) do
-    {:ok, %{num_rows: 1, rows: [issue]}} =
-      Repo.one(Issue, [year: year, number: number])
-    issue
+    Repo.one(Issue, [year: year, number: number])
   end
 
   def get_issue(id) do
