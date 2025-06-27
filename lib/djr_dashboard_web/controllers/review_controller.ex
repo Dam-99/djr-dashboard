@@ -9,7 +9,7 @@ defmodule DjrDashboardWeb.ReviewController do
   end
 
   def create(conn, %{"year" => year, "number" => number, "manga_chapter_reviews" => manga_chapter_reviews}) when is_list(manga_chapter_reviews) do
-    %Issue{id: id} = IssueReviewContext.create_issue({year, number}, manga_chapter_reviews)
+    %{issue: %Issue{id: id}} = IssueReviewContext.create_issue({year, number}, manga_chapter_reviews)
     render(conn, id: id)
   end
 

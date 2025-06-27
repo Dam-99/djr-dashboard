@@ -36,6 +36,15 @@ defmodule DjrDashboard.ChapterContext do
     Repo.get(Chapter, id)
   end
 
+  def get_issue_chapters(%DjrDashboard.Issue{} = issue) do
+    Repo.all(Chapter, issue_id: issue.id)
+  end
+
+  def get_issue_chapters(id_or_yrnr) do
+    DjrDashboard.IssueContext.get_issue(id_or_yrnr)
+    |> get_issue_chapters()
+  end
+
   def create_chapter(manga_id, issue_id) do
     manga_id
       |> MangaContext.get_latest_chapter()

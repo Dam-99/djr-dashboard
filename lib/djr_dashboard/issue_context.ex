@@ -34,4 +34,23 @@ defmodule DjrDashboard.IssueContext do
     issue = get_issue(id_or_yrnr)
     Repo.delete(issue)
   end
+
+  def get_review_for_issue(%Issue{} = issue) do
+    chapters = DjrDashboard.ChapterContext.get_issue_chapters(issue)
+    chapters
+    |> Enum.map(fn %DjrDashboard.Chapter{} = chapter ->
+      review = %DjrDashboard.ChapterReview{} = DjrDashboard.ChapterReviewContext.get_chapter_review(chapter.id)
+      manga = DjrDashboard.MangaContext.get_manga(chapter.manga_id)
+      %{manga: manga, chapter: chapter, message: review.message}
+    end)
+    |> IO.inspect()
+    |> Enum.reduce(%{issue: issue, chapter_reviews: []}, fn mcr, acc ->
+      Map.put(acc, :chapter_reviews, [mcr | acc.chapter_reviews])
+    end)
+  end
+
+  def get_review_for_issue(id_or_yrnr) do
+    get_issue(id_or_yrnr)
+    |> get_review_for_issue()
+  end
 end
